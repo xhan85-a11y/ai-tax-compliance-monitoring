@@ -1,0 +1,23 @@
+
+schema:
+  required:
+    - supplier_vat
+    - buyer_vat
+    - net_amount
+    - vat_rate
+    - invoice_date
+  types:
+    supplier_vat: str
+    buyer_vat: str
+    net_amount: float
+    vat_rate: float
+    invoice_date: date
+rules:
+  - id: VAT_RATE_RANGE
+    condition: "vat_rate < 0 or vat_rate > 30"
+    severity: high
+    message: "VAT rate out of plausible range"
+  - id: MISSING_BUYER_VAT
+    condition: "buyer_vat == ''"
+    severity: medium
+    message: "Buyer VAT missing"

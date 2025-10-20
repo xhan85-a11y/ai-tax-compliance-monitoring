@@ -1,0 +1,17 @@
+
+schema:
+  required:
+    - financial_institution_id
+    - account_number
+    - balance
+    - report_period
+  types:
+    financial_institution_id: str
+    account_number: str
+    balance: float
+    report_period: str
+rules:
+  - id: BALANCE_NEGATIVE
+    condition: "balance < 0"
+    severity: high
+    message: "Negative account balance"

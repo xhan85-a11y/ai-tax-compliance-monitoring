@@ -1,0 +1,21 @@
+
+schema:
+  required:
+    - payer_tax_id
+    - payee_tax_id
+    - amount
+    - payment_date
+  types:
+    payer_tax_id: str
+    payee_tax_id: str
+    amount: float
+    payment_date: date
+rules:
+  - id: NEGATIVE_AMOUNT
+    condition: "amount < 0"
+    severity: high
+    message: "Negative payment amount not allowed"
+  - id: TAX_ID_LENGTH
+    condition: "len(payer_tax_id) < 9 or len(payee_tax_id) < 9"
+    severity: medium
+    message: "Tax ID length suspicious"
